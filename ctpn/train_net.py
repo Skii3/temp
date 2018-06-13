@@ -12,10 +12,10 @@ from lib.networks.factory import get_network
 from lib.fast_rcnn.config import cfg
 
 if __name__ == '__main__':
-    cfg_from_file('ctpn/text.yml')
+    cfg_from_file('./text.yml')
     print('Using config:')
     pprint.pprint(cfg)
-    imdb = get_imdb('voc_2007_trainval')
+    imdb = get_imdb('voc_2018_trainval')
     print('Loaded dataset `{:s}` for training'.format(imdb.name))
     roidb = get_training_roidb(imdb)
 
@@ -32,6 +32,6 @@ if __name__ == '__main__':
     train_net(network, imdb, roidb,
               output_dir=output_dir,
               log_dir=log_dir,
-              pretrained_model='data/pretrain/VGG_imagenet.npy',
+              pretrained_model='../data/pretrain/VGG_imagenet.npy',
               max_iters=int(cfg.TRAIN.max_steps),
               restore=bool(int(cfg.TRAIN.restore)))
